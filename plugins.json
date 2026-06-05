@@ -1,0 +1,200 @@
+[
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=espn.com&sz=%size%",
+    "jarFileSize": 64910,
+    "fileHash": "sha256-59b08d7cf74c872abc0b52319964c54597cd36ab169323f5756b067349432a4f",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16943,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "5p0rt5",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/5p0rt5.jar",
+    "description": "Sports live TV (M3U) \u2014 5p0rt5.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/5p0rt5.cs3",
+    "name": "5p0rt5",
+    "jarHash": "sha256-9afee6223d397d538b3135a93fa06a16147b43ce77d187ceb716253ad0f31b0c"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=jagobd.com.bd&sz=%size%",
+    "jarFileSize": 64892,
+    "fileHash": "sha256-5a73beca5cc12acc2b5b719bfe1709cf3a3ed7b03c3f11a893a184cb933aacae",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16951,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "bd1x",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bd1x.jar",
+    "description": "BDIX ISP live TV (M3U) \u2014 bd1x.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bd1x.cs3",
+    "name": "bd1x",
+    "jarHash": "sha256-5910d41dd9b857008e254cb7db05f7f23bcff07ee7c41a23e84f9a58098bc4e8"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%",
+    "jarFileSize": 64901,
+    "fileHash": "sha256-f39eedec8401e214074e4d5df5081c57621c99ca59867c4fb2d7f498c48a53bf",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16948,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "bdd3v",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bdd3v.jar",
+    "description": "Bangla live TV (M3U) \u2014 bdd3v.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bdd3v.cs3",
+    "name": "bdd3v",
+    "jarHash": "sha256-6a8ecf36f141d694f7af2acb321c7d37036f0fbc23bad7aad7bcd904fcdd7982"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=dangguli.live&sz=%size%",
+    "jarFileSize": 64919,
+    "fileHash": "sha256-ad6bdd08812c609af09cb888cf81f7a68207f02ad46e3cd7ebf554041d77c4bc",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16956,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "d4ngul1",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/d4ngul1.jar",
+    "description": "Danguli-style live TV (M3U) \u2014 d4ngul1.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/d4ngul1.cs3",
+    "name": "d4ngul1",
+    "jarHash": "sha256-2046dba7f541ccff8907cb20ca1c9265e160c1f68a7e729acf907ad6c4b35096"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=fifa.com&sz=%size%",
+    "jarFileSize": 64892,
+    "fileHash": "sha256-ded5508090e754e6673b5e229f8e19cf2ca44cb8ce59c8231f4739dec631c844",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16951,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "f1f4",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/f1f4.jar",
+    "description": "Sports live TV (M3U) \u2014 f1f4.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/f1f4.cs3",
+    "name": "f1f4",
+    "jarHash": "sha256-a17fc194338f555c927eef93e242f24cacb10109166acbd7eeee71da2926d733"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=speedtest.net&sz=%size%",
+    "jarFileSize": 64919,
+    "fileHash": "sha256-dfd143342e9e0f50198e4c07e4e17ff0fea8b373b0d633974d0789ff1428bbee",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16956,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "l05p33d",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/l05p33d.jar",
+    "description": "Lospeed live TV (M3U) \u2014 l05p33d.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/l05p33d.cs3",
+    "name": "l05p33d",
+    "jarHash": "sha256-149d37a124277fa41845ad910b5f841958a39a1a738296a018bd83cc94654510"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=jagobd.com.bd&sz=%size%",
+    "jarFileSize": 64919,
+    "fileHash": "sha256-ff37f43e36c3637eeee5b34bb27d33fc5060d153e077c525127ddd8e1497a7a5",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16962,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "pr3m1um",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/pr3m1um.jar",
+    "description": "Premium ISP live TV (M3U) \u2014 pr3m1um.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/pr3m1um.cs3",
+    "name": "pr3m1um",
+    "jarHash": "sha256-e3f355ca6cc67a2a837020dc9ddee4f3207df1f5e2a9ba087ba57e47cca483d6"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=sportzfylive.com&sz=%size%",
+    "jarFileSize": 40484,
+    "fileHash": "sha256-1b48125d9df7899dbc9256dc2f936bbdd61193ee64bc55c64d57dca35dfd3a9b",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 12278,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "sportzfy",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/sportzfy.jar",
+    "description": "Sportzfy \u2014 live sports: football, cricket, UFC, motorsport.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/sportzfy.cs3",
+    "name": "sportzfy",
+    "jarHash": "sha256-5c58dbaf08ebec5f4b656092b24dfa21e63b77d933e78a19001df3c7f814651d"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%",
+    "jarFileSize": 64910,
+    "fileHash": "sha256-28e2e760c60a44dd4033bf54901a4fdc5b009ea04f6397e007237d4b0d18ebbe",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16953,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "t0ff33",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/t0ff33.jar",
+    "description": "Bangla live TV (M3U) \u2014 t0ff33.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/t0ff33.cs3",
+    "name": "t0ff33",
+    "jarHash": "sha256-8b393ac2a28a767f269f20af988715a383226264e8ac9d5c96b0738ef48d5cc8"
+  }
+]

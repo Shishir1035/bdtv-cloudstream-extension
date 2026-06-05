@@ -1,0 +1,68 @@
+[
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%",
+    "jarFileSize": 58573,
+    "fileHash": "sha256-ff3cc2efc5438c778dacd10c63e5a885dd0f62d5630bb2d8d964aa80bbe4a670",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16080,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "bdd3v",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bdd3v.jar",
+    "description": "Live stream aggregator (M3U) \u2014 set G.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/bdd3v.cs3",
+    "name": "bdd3v",
+    "jarHash": "sha256-a4948ff5305d11714d7303092968dc17a66c421c75d485a66570d3827edad304"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%",
+    "jarFileSize": 58402,
+    "fileHash": "sha256-485c6e780cb0802f7e60cd8e8d8200eb098c65895ca9b08d9e2f75712c8dae8b",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16075,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "f1f4",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/f1f4.jar",
+    "description": "Live stream aggregator (M3U) \u2014 set E.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/f1f4.cs3",
+    "name": "f1f4",
+    "jarHash": "sha256-439c6f3062ed881b33d147dadcce3bdcf34294cf645f1ed7dd4d3516cd9cc34c"
+  },
+  {
+    "iconUrl": "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%",
+    "jarFileSize": 58744,
+    "fileHash": "sha256-291b328f0478fc86ec7316826161e13d5f4832c79e4faee15e93c7f7eece95e0",
+    "apiVersion": 1,
+    "repositoryUrl": "https://github.com/Shishir1035/bdtv-cloudstream-extension",
+    "fileSize": 16085,
+    "status": 1,
+    "authors": [
+      "Shishir1035"
+    ],
+    "tvTypes": [
+      "Live"
+    ],
+    "version": 1,
+    "internalName": "t0ff33",
+    "jarUrl": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/t0ff33.jar",
+    "description": "Live stream aggregator (M3U) \u2014 set A.",
+    "url": "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/t0ff33.cs3",
+    "name": "t0ff33",
+    "jarHash": "sha256-d3c2e6ab3762bf3b87e1b14f5e97cdc690a010a05617cb0b19617f84dccec90b"
+  }
+]

@@ -64,6 +64,8 @@ jobs:
           # Filter plugins.json down to the published keys.
           python3 -c "import json,os; keys=set(json.loads(os.environ.get('CONFIG_JSON') or '{}').keys()); pj=[p for p in json.load(open('build/plugins.json')) if p.get('internalName') in keys]; json.dump(pj,open('$GITHUB_WORKSPACE/builds/plugins.json','w'),indent=2); print('Published:',[p['internalName'] for p in pj])"
           cp repo.json $GITHUB_WORKSPACE/builds
+          # Host bundled static playlists so config keys can point at them.
+          cp $GITHUB_WORKSPACE/src/*.m3u $GITHUB_WORKSPACE/builds 2>/dev/null || true
 
       - name: Push builds
         run: |

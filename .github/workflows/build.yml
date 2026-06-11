@@ -53,9 +53,16 @@ jobs:
           chmod +x gradlew
           ./gradlew make makePluginsJson
           ./gradlew ensureJarCompatibility
-          cp **/build/*.cs3 $GITHUB_WORKSPACE/builds
-          cp **/build/*.jar $GITHUB_WORKSPACE/builds
-          cp build/plugins.json $GITHUB_WORKSPACE/builds
+          # Publish only the extensions whose key is present in CONFIG_JSON.
+          # Modules without a config key stay in the repo but are not shipped.
+          KEYS=$(printf '%s' "$CONFIG_JSON" | python3 -c "import sys,json;print('\n'.join(json.load(sys.stdin).keys()))" 2>/dev/null || true)
+          echo "Publishing keys: $KEYS"
+          for k in $KEYS; do
+            cp "$k/build/$k.cs3" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || echo "WARN: no cs3 for key '$k'"
+            cp "$k/build/$k.jar" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || true
+          done
+          # Filter plugins.json down to the published keys.
+          python3 -c "import json,os; keys=set(json.loads(os.environ.get('CONFIG_JSON') or '{}').keys()); pj=[p for p in json.load(open('build/plugins.json')) if p.get('internalName') in keys]; json.dump(pj,open('$GITHUB_WORKSPACE/builds/plugins.json','w'),indent=2); print('Published:',[p['internalName'] for p in pj])"
           cp repo.json $GITHUB_WORKSPACE/builds
 
       - name: Push builds

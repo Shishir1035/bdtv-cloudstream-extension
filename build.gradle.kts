@@ -52,6 +52,13 @@ subprojects {
     apply(plugin = "kotlin-android")
     apply(plugin = "com.lagradost.cloudstream3.gradle")
 
+    // cloudstream:library is a -SNAPSHOT (changing module); by default Gradle re-checks its
+    // jitpack metadata every build, which fails whenever jitpack is slow/down. Trust the
+    // cached copy for 30 days so a once-resolved artifact is reused without hitting jitpack.
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor(30, "days")
+    }
+
     // Common extension metadata. Every module is the same generic M3U reader; only its
     // key (= project name), description and icon differ — all sourced from the config manifest.
     version = 1

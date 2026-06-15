@@ -1,0 +1,8 @@
+{
+  "name": "M3U Live",
+  "description": "Live-stream M3U extensions for CloudStream.",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/Shishir1035/bdtv-cloudstream-extension/builds/plugins.json"
+  ]
+}

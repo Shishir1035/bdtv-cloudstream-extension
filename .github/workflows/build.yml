@@ -1,0 +1,77 @@
+name: Build
+
+concurrency:
+  group: "build"
+  cancel-in-progress: true
+
+# Allow the workflow to force-push built artifacts to the `builds` branch.
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          path: "src"
+
+      - name: Checkout builds
+        uses: actions/checkout@master
+        with:
+          ref: "builds"
+          path: "builds"
+
+      - name: Clean old builds
+        run: |
+          rm $GITHUB_WORKSPACE/builds/*.cs3 || true
+          rm $GITHUB_WORKSPACE/builds/*.jar || true
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Build Plugins
+        env:
+          CONFIG_JSON: ${{ secrets.CONFIG_JSON }}
+        run: |
+          cd $GITHUB_WORKSPACE/src
+          chmod +x gradlew
+          ./gradlew make makePluginsJson
+          ./gradlew ensureJarCompatibility
+          # Publish only the extensions whose key is present in CONFIG_JSON.
+          # Modules without a config key stay in the repo but are not shipped.
+          KEYS=$(printf '%s' "$CONFIG_JSON" | python3 -c "import sys,json;print('\n'.join(json.load(sys.stdin).keys()))" 2>/dev/null || true)
+          echo "Publishing keys: $KEYS"
+          for k in $KEYS; do
+            cp "$k/build/$k.cs3" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || echo "WARN: no cs3 for key '$k'"
+            cp "$k/build/$k.jar" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || true
+          done
+          # Filter plugins.json down to the published keys.
+          python3 -c "import json,os; keys=set(json.loads(os.environ.get('CONFIG_JSON') or '{}').keys()); pj=[p for p in json.load(open('build/plugins.json')) if p.get('internalName') in keys]; json.dump(pj,open('$GITHUB_WORKSPACE/builds/plugins.json','w'),indent=2); print('Published:',[p['internalName'] for p in pj])"
+          cp repo.json $GITHUB_WORKSPACE/builds
+          # Host bundled static playlists so config keys can point at them.
+          cp $GITHUB_WORKSPACE/src/*.m3u $GITHUB_WORKSPACE/builds 2>/dev/null || true
+
+      - name: Push builds
+        run: |
+          cd $GITHUB_WORKSPACE/builds
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit --amend -m "Build $GITHUB_SHA" || exit 0
+          git push --force

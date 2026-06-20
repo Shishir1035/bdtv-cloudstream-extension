@@ -62,8 +62,18 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/src
           chmod +x gradlew
-          ./gradlew make makePluginsJson
-          ./gradlew ensureJarCompatibility
+          # jitpack intermittently times out serving cloudstream:library:-SNAPSHOT
+          # metadata on a cold cache. Retry dependency resolution a few times before
+          # giving up; once resolved it is cached (cacheChangingModulesFor=30d).
+          retry() {
+            local n=1 max=4
+            until "$@"; do
+              if [ $n -ge $max ]; then echo "FAILED after $n attempts: $*"; return 1; fi
+              echo "Attempt $n failed; retrying in $((n*30))s..."; sleep $((n*30)); n=$((n+1))
+            done
+          }
+          retry ./gradlew make makePluginsJson
+          retry ./gradlew ensureJarCompatibility
           # Publish only the extensions whose key is present in CONFIG_JSON.
           # Modules without a config key stay in the repo but are not shipped.
           KEYS=$(printf '%s' "$CONFIG_JSON" | python3 -c "import sys,json;print('\n'.join(json.load(sys.stdin).keys()))" 2>/dev/null || true)

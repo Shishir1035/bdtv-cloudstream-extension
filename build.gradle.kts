@@ -14,6 +14,18 @@ val configRaw: String = System.getenv("CONFIG_JSON")?.takeIf { it.isNotBlank() }
 val extensionMeta: Map<String, Map<String, Any?>> =
     JsonSlurper().parseText(configRaw) as Map<String, Map<String, Any?>>
 
+// Native scraper modules: own committed source under <name>/src, NOT config-key M3U readers.
+// Their extension metadata lives here (no config manifest entry). Keep names in sync with
+// settings.gradle.kts.
+data class NativeMeta(val description: String, val iconUrl: String, val tvTypes: List<String>)
+val nativeModules: Map<String, NativeMeta> = mapOf(
+    "sportzfy" to NativeMeta(
+        description = "Sportzfy — live sports: football, cricket, UFC, motorsport.",
+        iconUrl = "https://www.google.com/s2/favicons?domain=sportzfylive.com&sz=%size%",
+        tvTypes = listOf("Live"),
+    ),
+)
+
 buildscript {
     repositories {
         google()
@@ -59,9 +71,10 @@ subprojects {
         resolutionStrategy.cacheChangingModulesFor(30, "days")
     }
 
-    // Common extension metadata. Every module is the same generic M3U reader; only its
-    // key (= project name), description and icon differ — all sourced from the config manifest.
+    // Extension metadata. Generic M3U modules take desc/icon from the config manifest;
+    // native scraper modules take theirs from `nativeModules` above.
     version = 1
+    val native = nativeModules[project.name]
     val meta = extensionMeta[project.name]
     val metaDesc = (meta?.get("desc") as? String)?.takeIf { it.isNotBlank() }
     val metaLogo = (meta?.get("logo") as? String)?.takeIf { it.isNotBlank() }
@@ -69,12 +82,12 @@ subprojects {
         // GITHUB_REPOSITORY is set automatically by the CI workflow.
         // Locally it falls back to the placeholder below — replace USER/REPO.
         setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/Shishir1035/bdtv-cloudstream-extension")
-        description = metaDesc ?: "Bangla live TV (M3U)."
+        description = native?.description ?: metaDesc ?: "Bangla live TV (M3U)."
         authors = listOf("Shishir1035")
         // Status: 0=Down, 1=Ok, 2=Slow, 3=Beta-only
         status = 1
-        tvTypes = listOf("Live")
-        iconUrl = metaLogo ?: "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%"
+        tvTypes = native?.tvTypes ?: listOf("Live")
+        iconUrl = native?.iconUrl ?: metaLogo ?: "https://www.google.com/s2/favicons?domain=toffeelive.com&sz=%size%"
         isCrossPlatform = true
     }
 
@@ -83,27 +96,31 @@ subprojects {
 
         buildFeatures.buildConfig = true
 
-        // All modules compile from one shared source tree; only BuildConfig.MODULE_KEY differs.
-        sourceSets.getByName("main").java.srcDir(rootProject.file("shared/src/main/kotlin"))
-
         defaultConfig {
             minSdk = 21
             compileSdkVersion(35)
             targetSdk = 35
+        }
 
-            // This module's key inside the config JSON = its gradle project (dir) name.
-            buildConfigField("String", "MODULE_KEY", "\"${project.name}\"")
+        // Generic M3U modules compile from the one shared source tree and read their playlist
+        // URL from BuildConfig (MODULE_KEY + CONFIG_JSON); native modules ship their own source.
+        if (native == null) {
+            sourceSets.getByName("main").java.srcDir(rootProject.file("shared/src/main/kotlin"))
+            defaultConfig {
+                // This module's key inside the config JSON = its gradle project (dir) name.
+                buildConfigField("String", "MODULE_KEY", "\"${project.name}\"")
 
-            // Config JSON ({ "<key>": "<playlist-url>", ... }) injected from the CONFIG_JSON
-            // env var (a GitHub secret in CI). Escaped into a Java string literal so the URLs
-            // live in the secret, never in source. Empty object fallback for local builds.
-            val configJson = System.getenv("CONFIG_JSON") ?: "{}"
-            val escaped = configJson
-                .replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\r", "")
-                .replace("\n", "\\n")
-            buildConfigField("String", "CONFIG_JSON", "\"$escaped\"")
+                // Config JSON ({ "<key>": "<playlist-url>", ... }) injected from the CONFIG_JSON
+                // env var (a GitHub secret in CI). Escaped into a Java string literal so the URLs
+                // live in the secret, never in source. Empty object fallback for local builds.
+                val configJson = System.getenv("CONFIG_JSON") ?: "{}"
+                val escaped = configJson
+                    .replace("\\", "\\\\")
+                    .replace("\"", "\\\"")
+                    .replace("\r", "")
+                    .replace("\n", "\\n")
+                buildConfigField("String", "CONFIG_JSON", "\"$escaped\"")
+            }
         }
 
         compileOptions {

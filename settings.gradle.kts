@@ -17,3 +17,8 @@ manifest.keys.forEach { key ->
     File(rootDir, key).mkdirs()
     include(key)
 }
+
+// Native scraper modules: own committed source under <name>/src, not config-driven M3U.
+// Always built (independent of the config manifest). Keep in sync with `nativeModules` in
+// build.gradle.kts.
+listOf("sportzfy").forEach { include(it) }

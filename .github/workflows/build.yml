@@ -74,16 +74,20 @@ jobs:
           }
           retry ./gradlew make makePluginsJson
           retry ./gradlew ensureJarCompatibility
-          # Publish only the extensions whose key is present in CONFIG_JSON.
-          # Modules without a config key stay in the repo but are not shipped.
-          KEYS=$(printf '%s' "$CONFIG_JSON" | python3 -c "import sys,json;print('\n'.join(json.load(sys.stdin).keys()))" 2>/dev/null || true)
+          # Native scraper modules: always shipped (no config key). Keep in sync with
+          # nativeModules in build.gradle.kts and settings.gradle.kts.
+          NATIVE_MODULES="sportzfy"
+          # Publish the config-key M3U extensions plus the native modules; anything else
+          # stays in the repo but is not shipped.
+          CONFIG_KEYS=$(printf '%s' "$CONFIG_JSON" | python3 -c "import sys,json;print('\n'.join(json.load(sys.stdin).keys()))" 2>/dev/null || true)
+          KEYS="$CONFIG_KEYS $NATIVE_MODULES"
           echo "Publishing keys: $KEYS"
           for k in $KEYS; do
             cp "$k/build/$k.cs3" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || echo "WARN: no cs3 for key '$k'"
             cp "$k/build/$k.jar" "$GITHUB_WORKSPACE/builds/" 2>/dev/null || true
           done
-          # Filter plugins.json down to the published keys.
-          python3 -c "import json,os; keys=set(json.loads(os.environ.get('CONFIG_JSON') or '{}').keys()); pj=[p for p in json.load(open('build/plugins.json')) if p.get('internalName') in keys]; json.dump(pj,open('$GITHUB_WORKSPACE/builds/plugins.json','w'),indent=2); print('Published:',[p['internalName'] for p in pj])"
+          # Filter plugins.json down to the published keys (config keys + native modules).
+          NATIVE_MODULES="$NATIVE_MODULES" python3 -c "import json,os; keys=set(json.loads(os.environ.get('CONFIG_JSON') or '{}').keys())|set(os.environ.get('NATIVE_MODULES','').split()); pj=[p for p in json.load(open('build/plugins.json')) if p.get('internalName') in keys]; json.dump(pj,open('$GITHUB_WORKSPACE/builds/plugins.json','w'),indent=2); print('Published:',[p['internalName'] for p in pj])"
           cp repo.json $GITHUB_WORKSPACE/builds
           # Host bundled static playlists so config keys can point at them.
           cp $GITHUB_WORKSPACE/src/*.m3u $GITHUB_WORKSPACE/builds 2>/dev/null || true
